@@ -5,24 +5,42 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
 public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;	
-	private String nome;	
-	private Set<String> telefones = new HashSet<>();	
-	private String endereco;	
+	private String nome;
+	
+	//@ElementCollection
+	//@CollectionTable(name="TELEFONE")
+	//private Set<String> telefones = new HashSet<>();
+	private String telefone;
+
+	private String endereco;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date dtaAdmissao; 
 	
 	public Funcionario() {		
 	}
 
-	public Funcionario(Integer id, String nome, String endereco, Date dtaAdmissao) {
+	public Funcionario(Integer id, String nome, String telefone, String endereco, Date dtaAdmissao) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.telefone = telefone;
 		this.endereco = endereco;
 		this.dtaAdmissao = dtaAdmissao;
 	}
@@ -43,14 +61,21 @@ public class Funcionario implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<String> getTelefones() {
+	/*public Set<String> getTelefones() {
 		return telefones;
 	}
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}*/
+	public String getTelefone() {
+		return telefone;
 	}
 
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
 	public String getEndereco() {
 		return endereco;
 	}
