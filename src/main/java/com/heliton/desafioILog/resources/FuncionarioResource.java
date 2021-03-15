@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.heliton.desafioILog.domain.Curso;
 import com.heliton.desafioILog.domain.Funcionario;
 import com.heliton.desafioILog.dto.FuncionarioDTO;
 import com.heliton.desafioILog.services.FuncionarioService;
@@ -28,11 +27,7 @@ public class FuncionarioResource {
 		@Autowired
 		private FuncionarioService service;
 		@Autowired
-		private LogSistemaResource logResouce;
-		
-		private String telefone1;
-		private String telefone2;
-		private String telefone3;
+		private LogSistemaResource logResouce;		
 		
 		@RequestMapping(method=RequestMethod.POST)
 		public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioDTO objDto) {
@@ -106,8 +101,6 @@ public class FuncionarioResource {
 			}	
 			return fones;
 		}
-		
-		
 		
 
 }
