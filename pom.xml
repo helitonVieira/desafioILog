@@ -19,6 +19,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
@@ -28,27 +32,36 @@
 			<scope>test</scope>
 		</dependency>
 		
+				
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>	
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    	</dependency>
 		
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>	
-
+    		<groupId>jstl</groupId>
+    		<artifactId>jstl</artifactId>
+    		<version>1.1.1</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.apache.tomcat</groupId>
+    		<artifactId>tomcat-jasper</artifactId>
+    		<version>9.0.5</version>
+		</dependency>		
+				
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<dependency>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>hibernate-validator</artifactId>
+    		<version>6.0.12.Final</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -56,8 +69,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+			</plugin>	
+		</plugins>		
+				
 	</build>
 
 </project>

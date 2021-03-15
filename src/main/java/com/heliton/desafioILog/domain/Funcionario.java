@@ -1,25 +1,57 @@
 package com.heliton.desafioILog.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;	
-	private String nome;	
-	private Set<String> telefones = new HashSet<>();	
-	private String endereco;	
-	private Date dtaAdmissao; 
+	
+	private String nome;
+	
+	@ElementCollection
+	@CollectionTable(name="TELEFONE")
+	private Set<String> telefones = new HashSet<>();
+	
+	private String endereco;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+	private LocalDateTime dtaAdmissao; 
+	
+	@JsonIgnore
+	@ManyToMany
+	 @JoinTable(name = "FUNCIONARIO_CURSO", 
+	 joinColumns = @JoinColumn(name = "funcionario_id"), 
+	 inverseJoinColumns = @JoinColumn(name = "curso_id") 
+	 ) 
+	private List<Curso> cursos = new ArrayList<>(); 
+
 	
 	public Funcionario() {		
 	}
-
-	public Funcionario(Integer id, String nome, String endereco, Date dtaAdmissao) {
+	
+	public Funcionario(Integer id, String nome, String endereco, LocalDateTime dtaAdmissao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -50,21 +82,30 @@ public class Funcionario implements Serializable {
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
-
+	
 	public String getEndereco() {
 		return endereco;
 	}
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
+	}	
 
-	public Date getDtaAdmissao() {
+	public LocalDateTime getDtaAdmissao() {
 		return dtaAdmissao;
 	}
 
-	public void setDtaAdmissao(Date dtaAdmissao) {
+	public void setDtaAdmissao(LocalDateTime dtaAdmissao) {
 		this.dtaAdmissao = dtaAdmissao;
+	}	
+	
+
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 	@Override
